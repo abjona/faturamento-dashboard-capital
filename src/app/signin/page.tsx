@@ -1,21 +1,29 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { auth } from "@/configs/firebase/firebase.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import AlertaErro from "@/components/Alerts/AlertaErro";
+import { useSession } from "@/hooks/useSession";
 
 export default function SignIn(){
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const { user } = useSession();
   const [error, setError] = useState({
     title: "",
     message: "",
   });
+
+  useEffect(() => {
+    if (user){
+      router.push("/dashboard");
+    }
+  }, [user])
 
   const loginWithEmail = async () => {
     try {

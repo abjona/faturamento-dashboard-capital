@@ -4,7 +4,6 @@ import { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("userToken");
-  console.log("Validando token", token);
   
   if (!token) {
     const loginUrl = new URL("/signin", request.url);
@@ -15,8 +14,6 @@ export async function middleware(request: NextRequest) {
     // Decodifique o token JWT usando a chave pública do Firebase
     await decodeFirebaseToken(token.value, "app-capital-premios");
     if (request.nextUrl.pathname == "/signin" || request.nextUrl.pathname == "/" ){
-      console.log(request.nextUrl);
-      
       const dashUrl = new URL("/dashboard", request.url);
       return NextResponse.redirect(dashUrl);
     }

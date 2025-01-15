@@ -74,7 +74,7 @@ const options: ApexOptions = {
   markers: {
     size: 4,
     colors: "#fff",
-    strokeColors: ["#6577F3", "#0FADCF","#80CAEE"],
+    strokeColors: ["#6577F3", "#0FADCF", "#80CAEE"],
     strokeWidth: 3,
     strokeOpacity: 0.9,
     strokeDashArray: 0,
@@ -117,32 +117,51 @@ const ChartLinesPrincipal: React.FC<props> = ({ dados, edicao }) => {
 
   useEffect(() => {
     if (dados.length > 0) {
-      const newDataLines: ApexAxisChartSeries = [];
+      console.log(dados);
+
       var compraEdicao: any = {};
 
       dados.map((item: any) => {
         if (`${item.edicao}` in compraEdicao == false) {
           compraEdicao[item.edicao] = item.valor_titulo;
-        }
-
-        else {
-          compraEdicao[item.edicao] = compraEdicao[item.edicao] + item.valor_titulo
+        } else {
+          compraEdicao[item.edicao] =
+            compraEdicao[item.edicao] + item.valor_titulo;
         }
       });
 
-      const dadosGrfico = Object.entries(compraEdicao).map(([key, value]) => compraEdicao[key]);
+      const dadosOrdenados = Object.keys(compraEdicao)
+        .sort((a, b) => Number(a.split(" ")[1]) - Number(b.split(" ")[1])) // Ordena as chaves numericamente
+        .reduce(
+          (obj, key) => {
+            obj[key] = compraEdicao[key];
+            return obj;
+          },
+          {} as Record<string, number>,
+        );
+
+        console.log(dadosOrdenados);
+        
+
+      //ordernar compraEdicao
+
+      const dadosGrfico = Object.entries(dadosOrdenados).map(
+        ([key, value]) => dadosOrdenados[key],
+      );
+
+      console.log(Object.keys(dadosOrdenados));
+      
 
       var chanceVendas: { name: string; data: number[] } = {
         name: "vendas totais",
         data: dadosGrfico,
       };
 
-      
-      setDataLines([chanceVendas])
+      setDataLines([chanceVendas]);
 
       const optionsEdicao = {
         ...options,
-        xaxis: { ...options.xaxis, categories: Object.keys(compraEdicao) },
+        xaxis: { ...options.xaxis, categories: Object.keys(dadosOrdenados) },
       };
       setNewOptions(optionsEdicao);
     }

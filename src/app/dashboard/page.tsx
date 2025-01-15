@@ -74,20 +74,13 @@ export default function Home() {
     <div className="dark:bg-boxdark-2 dark:text-bodydark">
       <DefaultLayout>
         <div className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-2 xl:grid-cols-8 2xl:gap-7.5">
-          <CardDataStats
-            title="Total vendas"
-            total={`R$${vendas.total},00`}
-            // rate="0.43%"
-            // levelUp
-          >
+          <CardDataStats title="Total vendas" total={`R$${vendas.total},00`}>
             <MdAttachMoney color="#3C50E0" size={24} />
           </CardDataStats>
 
           <CardDataStats
             title="Cartelas Vendidas"
             total={`${vendas.quandidade_vendidos}`}
-            // rate="2.59%"
-            // levelUp
           >
             <LuTickets color="#3C50E0" size={24} />
           </CardDataStats>
@@ -95,18 +88,11 @@ export default function Home() {
           <CardDataStats
             title="Vendas no cartão"
             total={`R$${metodo.cartao},00`}
-            // rate="2.59%"
-            // levelUp
           >
             <CiCreditCard2 color="#3C50E0" size={24} />
           </CardDataStats>
 
-          <CardDataStats
-            title="Vendas no pix"
-            total={`R$${metodo.pix},00`}
-            // rate="2.59%"
-            // levelUp
-          >
+          <CardDataStats title="Vendas no pix" total={`R$${metodo.pix},00`}>
             <PiPixLogo color="#3C50E0" size={22} />
           </CardDataStats>
         </div>
