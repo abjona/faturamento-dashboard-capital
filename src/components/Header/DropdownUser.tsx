@@ -15,9 +15,9 @@ const DropdownUser = () => {
 
   const logout = async () => {
     try {
-      router.replace("/")
       await fetch("/api/session", { method: "DELETE" });
       await signOut(auth);
+      router.push("/");
 
     } catch (error) {
       throw error;

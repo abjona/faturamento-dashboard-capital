@@ -8,7 +8,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import AlertaErro from "@/components/Alerts/AlertaErro";
 import { useSession } from "@/hooks/useSession";
 
-export default function SignIn(){
+export default function SignIn() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -20,10 +20,10 @@ export default function SignIn(){
   });
 
   useEffect(() => {
-    if (user){
+    if (user) {
       router.push("/dashboard");
     }
-  }, [user])
+  }, [user]);
 
   const loginWithEmail = async () => {
     try {
@@ -42,7 +42,7 @@ export default function SignIn(){
         method: "POST",
         body: JSON.stringify({ token: token }),
       });
-      if (retorno.status == 200) {        
+      if (retorno.status == 200) {
         router.push("/dashboard");
       }
     } catch (error) {
@@ -211,6 +211,7 @@ export default function SignIn(){
               <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
                 Login Dashboard
               </h2>
+              <form onSubmit={loginWithEmail}>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
                     Email
@@ -284,7 +285,7 @@ export default function SignIn(){
                 <div className="mb-5">
                   {!loading && (
                     <button
-                      onClick={loginWithEmail}
+                      type="submit"
                       disabled={email == "" || senha == ""}
                       className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
                     >
@@ -297,10 +298,11 @@ export default function SignIn(){
                     </div>
                   )}
                 </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-};
+}
