@@ -17,6 +17,7 @@
     "fs": "^0.0.1-security",
     "js-cookie": "^3.0.5",
     "jsvectormap": "^1.6.0",
+    "jwt-decode": "^4.0.0",
     "net": "^1.0.2",
     "next": "^14.2.4",
     "nookies": "^2.5.2",

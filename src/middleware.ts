@@ -1,32 +1,58 @@
-import { decodeFirebaseToken } from "firebase-edge-auth";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
+import { jwtDecode } from "jwt-decode";
+const publicRoutes = [
+  { path: "/", whenAuthenticated: "redirect" },
+  { path: "/signin", whenAuthenticated: "redirect" },
+];
 
-export async function middleware(request: NextRequest) {
+const REDIRECT_NOT_AUTHENTICATED = "/";
+
+export function middleware(request: NextRequest) {
+  const path = request.nextUrl.pathname;
   const token = request.cookies.get("userToken");
-  
-  if (!token) {
-    const loginUrl = new URL("/signin", request.url);
-    return NextResponse.redirect(loginUrl);
-  }
+  const publicRoute = publicRoutes.find((route) => route.path === path);
 
-  try {
-    // Decodifique o token JWT usando a chave pública do Firebase
-    await decodeFirebaseToken(token.value, "app-capital-premios");
-    if (request.nextUrl.pathname == "/signin" || request.nextUrl.pathname == "/" ){
-      const dashUrl = new URL("/dashboard", request.url);
-      return NextResponse.redirect(dashUrl);
-    }
-    // Continue para a rota solicitada
+  if (!token && publicRoute) {
     return NextResponse.next();
-  } catch (error) {
-    console.error("Token inválido ou expirado:", error);
-
-    const loginUrl = new URL("/signin", request.url);
-    return NextResponse.redirect(loginUrl);
   }
+  if (token && !publicRoute) {
+    const tokenDecoded = jwtDecode(token.value);
+
+    if (tokenDecoded.exp) {
+      const expirationDate = new Date(tokenDecoded.exp * 1000); // Convertendo de segundos para milissegundos
+      console.log("Token expira em:", expirationDate);
+
+      if (expirationDate < new Date()) {
+        console.log("Token expirado!");
+        const redirectUrl = request.nextUrl.clone();
+        redirectUrl.pathname = REDIRECT_NOT_AUTHENTICATED;
+        return NextResponse.redirect(redirectUrl);
+      } else {
+        return NextResponse.next();
+      }
+    } else {
+      console.log("Token expiration date is undefined");
+    }
+  }
+
+  if (!token && !publicRoute) {
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.pathname = REDIRECT_NOT_AUTHENTICATED;
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  if (token && publicRoute && publicRoute.whenAuthenticated == "redirect") {
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.pathname = "/dashboard";
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+  ],
 };
