@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { auth } from "@/configs/firebase/firebase.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import AlertaErro from "@/components/Alerts/AlertaErro";
+import Logo from "@/assests/logo.png";
 
 export default function SignIn() {
   const router = useRouter();
@@ -57,7 +58,7 @@ export default function SignIn() {
             <div className="px-26 py-17.5 text-center">
               <Link className="mb-5.5 inline-block" href="/">
                 <Image
-                  src={"/images/logo/logo.png"}
+                  src={Logo}
                   alt="Logo"
                   width={176}
                   height={32}
