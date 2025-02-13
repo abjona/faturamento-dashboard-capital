@@ -27,6 +27,7 @@ export function middleware(request: NextRequest) {
         console.log("Token expirado!");
         const redirectUrl = request.nextUrl.clone();
         redirectUrl.pathname = REDIRECT_NOT_AUTHENTICATED;
+        request.cookies.delete("userToken")
         return NextResponse.redirect(redirectUrl);
       } else {
         return NextResponse.next();
