@@ -23,7 +23,7 @@ export default function ModalCanhoto(props: props) {
                   </label>
                   <input
                     type="text"
-                    placeholder="Disabled label"
+                    placeholder="Nome"
                     disabled
                     value={pessoa.nome}
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-3 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
@@ -36,7 +36,7 @@ export default function ModalCanhoto(props: props) {
                   </label>
                   <input
                     type="text"
-                    placeholder="Disabled label"
+                    placeholder="Email"
                     disabled
                     value={pessoa.email}
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-3 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
@@ -49,7 +49,7 @@ export default function ModalCanhoto(props: props) {
                   </label>
                   <input
                     type="text"
-                    placeholder="Disabled label"
+                    placeholder="Telefone"
                     disabled
                     value={pessoa.telefone}
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-3 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
@@ -64,7 +64,7 @@ export default function ModalCanhoto(props: props) {
                   </label>
                   <input
                     type="text"
-                    placeholder="Disabled label"
+                    placeholder="Rua"
                     disabled
                     value={pessoa.endereco.rua}
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-3 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
@@ -77,7 +77,7 @@ export default function ModalCanhoto(props: props) {
                   </label>
                   <input
                     type="text"
-                    placeholder="Disabled label"
+                    placeholder="Bairro"
                     disabled
                     value={pessoa.endereco.bairro}
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-3 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
@@ -90,7 +90,7 @@ export default function ModalCanhoto(props: props) {
                   </label>
                   <input
                     type="text"
-                    placeholder="Disabled label"
+                    placeholder="Numero"
                     disabled
                     value={pessoa.endereco.numero}
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-3 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
@@ -103,7 +103,7 @@ export default function ModalCanhoto(props: props) {
                   </label>
                   <input
                     type="text"
-                    placeholder="Disabled label"
+                    placeholder="Cep"
                     disabled
                     value={pessoa.endereco.cep}
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-3 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
