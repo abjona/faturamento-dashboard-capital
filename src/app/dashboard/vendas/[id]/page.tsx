@@ -42,6 +42,8 @@ const VendasDetalhes: React.FC = () => {
           method: "GET",
         });
         const data = await resultado.json();
+        console.log(data);
+        
         setDados(data);
         var quantidade = 0;
         var total = 0;
