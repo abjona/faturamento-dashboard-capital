@@ -43,7 +43,7 @@ export default function Home() {
           });
         }
       });
-
+      
       setDados(dadosGerais);
       var vendasTotais = 0;
       var quandidade_vendidos = 0;
