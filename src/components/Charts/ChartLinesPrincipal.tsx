@@ -120,7 +120,6 @@ const ChartLinesPrincipal: React.FC<props> = ({ dados, edicao }) => {
       console.log(dados);
 
       var compraEdicao: any = {};
-
       dados.map((item: any) => {
         if (`${item.edicao}` in compraEdicao == false) {
           compraEdicao[item.edicao] = item.valor_titulo;
@@ -129,9 +128,13 @@ const ChartLinesPrincipal: React.FC<props> = ({ dados, edicao }) => {
             compraEdicao[item.edicao] + item.valor_titulo;
         }
       });
-
+      
       const dadosOrdenados = Object.keys(compraEdicao)
-        .sort((a, b) => Number(a.split(" ")[1]) - Number(b.split(" ")[1])) // Ordena as chaves numericamente
+        .sort((a, b) => {
+          const dataA: any = new Date(a.split(" | ")[1].split("/").reverse().join("-"));
+          const dataB: any = new Date(b.split(" | ")[1].split("/").reverse().join("-"));
+          return dataA - dataB;
+        }) // Ordena as chaves numericamente
         .reduce(
           (obj, key) => {
             obj[key] = compraEdicao[key];
@@ -139,18 +142,11 @@ const ChartLinesPrincipal: React.FC<props> = ({ dados, edicao }) => {
           },
           {} as Record<string, number>,
         );
-
-        console.log(dadosOrdenados);
-        
-
       //ordernar compraEdicao
 
       const dadosGrfico = Object.entries(dadosOrdenados).map(
         ([key, value]) => dadosOrdenados[key],
       );
-
-      console.log(Object.keys(dadosOrdenados));
-      
 
       var chanceVendas: { name: string; data: number[] } = {
         name: "vendas totais",
