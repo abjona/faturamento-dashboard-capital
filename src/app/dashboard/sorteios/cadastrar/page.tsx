@@ -95,9 +95,9 @@ const cadastroSorteio: React.FC = () => {
                     />
                   </div>
                 </div>
-                <div className="mb-4.5">
+                {/* <div className="mb-4.5">
                   <DatePickerOne />
-                </div>
+                </div> */}
 
                 <div className="mb-4.5 flex flex-row items-center justify-between">
                   <label className="mb-3 flex flex-col text-sm font-medium text-black dark:text-white">
