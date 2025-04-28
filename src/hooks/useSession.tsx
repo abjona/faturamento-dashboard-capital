@@ -11,7 +11,6 @@ export const useSession = () => {
         const response = await fetch("/api/protected", { method: "GET" });
         const json: any = await response.json();
         const decodedToken = await decodeFirebaseToken(json.token, "app-capital-premios");
-        console.log("setando usuario");
         
         setUser(decodedToken); // Você pode buscar mais detalhes do usuário
       } catch {

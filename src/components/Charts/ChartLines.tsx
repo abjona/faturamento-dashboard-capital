@@ -118,6 +118,7 @@ const ChartLines: React.FC<props> = ({ dados, edicao }) => {
 
   useEffect(() => {
     const newDataLines: ApexAxisChartSeries = [];
+    var teste2 = new Array();
     Object.keys(dados).map((chance, index) => {
       var chanceVendas: { name: string; data: number[] } = {
         name: chance,
@@ -133,11 +134,12 @@ const ChartLines: React.FC<props> = ({ dados, edicao }) => {
         "5": 0,
         "6": 0,
       };
-
       Object.keys(dados[chance]).map((numero, index2) => {
-        const { data_compra, valor_titulo } = dados[chance][numero];
+        const { data_compra, valor_titulo, email } = dados[chance][numero];
         var diaSemana = new Date(data_compra).getDay();
-
+        
+        teste2.push(numero);
+ 
         if (diaSemana == 7) {
           diaSemana = 1;
         } else {
@@ -150,6 +152,7 @@ const ChartLines: React.FC<props> = ({ dados, edicao }) => {
       newDataLines.push(chanceVendas);
     });
 
+    // console.log(teste2);
     setDataLines(newDataLines);
   }, [dados]);
 

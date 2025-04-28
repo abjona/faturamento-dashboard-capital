@@ -42,7 +42,6 @@ const VendasDetalhes: React.FC = () => {
           method: "GET",
         });
         const data = await resultado.json();
-        console.log(data);
         
         setDados(data);
         var quantidade = 0;
@@ -51,9 +50,12 @@ const VendasDetalhes: React.FC = () => {
           pix: 0,
           cartao: 0,
         };
+        const num : any= []
         Object.keys(data).map((chance, index) => {
           Object.keys(data[chance]).map((numero, index2) => {
             const dado = data[chance][numero];
+            
+            num.push(numero)
             if (dado.tipo_pagamento == "pix") pagamento.pix += dado.valor_titulo;
             if (dado.tipo_pagamento == "cartao")
               pagamento.cartao += dado.valor_titulo;
@@ -61,7 +63,8 @@ const VendasDetalhes: React.FC = () => {
             quantidade += 1;
           });
         });
-  
+        // console.log(num);
+        
         setMetodo(pagamento);
         setVendas({ quandidade_vendidos: quantidade, total: total });
       }
@@ -115,7 +118,7 @@ const VendasDetalhes: React.FC = () => {
         <ChartLines edicao={edicao || ""} dados={dados} />
       </div>
       <div className="col-span-12 xl:col-span-8 2xl:mt-7.5 md:mt-4 mt-4">
-        <TableCidades dados={dados} />
+        {/* <TableCidades dados={dados} /> */}
       </div>
     </DefaultLayout>
   );

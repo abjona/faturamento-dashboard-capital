@@ -102,7 +102,7 @@ const options: ApexOptions = {
       },
     },
     min: 0,
-    max: 10000,
+    max: 20000,
   },
 };
 
@@ -117,7 +117,7 @@ const ChartLinesPrincipal: React.FC<props> = ({ dados, edicao }) => {
 
   useEffect(() => {
     if (dados.length > 0) {
-      console.log(dados);
+      // console.log(dados);
 
       var compraEdicao: any = {};
       dados.map((item: any) => {
@@ -128,6 +128,8 @@ const ChartLinesPrincipal: React.FC<props> = ({ dados, edicao }) => {
             compraEdicao[item.edicao] + item.valor_titulo;
         }
       });
+      // var teste = dados.filter(x => x.edicao == "Edição 08 | 27/04/2025").map(x => x.id);
+      // console.log(teste);
       
       const dadosOrdenados = Object.keys(compraEdicao)
         .sort((a, b) => {

@@ -54,7 +54,7 @@ const ChartRounded: React.FC<props> = ({ dados }) => {
     return Object.keys(dados[item]).length;
   });
   const newOptions = {...options, labels: chances }
-  console.log(quantidades);
+  // console.log(quantidades);
 
   return (
     <div className="rounded-sm border flex flex-col justify-between border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5">

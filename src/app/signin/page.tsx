@@ -21,7 +21,6 @@ export default function SignIn() {
   const loginWithEmail = async () => {
     try {
       setLoading(true);
-      console.log("aquiiii");
 
       setError({
         message: "",
