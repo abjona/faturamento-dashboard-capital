@@ -118,7 +118,7 @@ const VendasDetalhes: React.FC = () => {
         <ChartLines edicao={edicao || ""} dados={dados} />
       </div>
       <div className="col-span-12 xl:col-span-8 2xl:mt-7.5 md:mt-4 mt-4">
-        {/* <TableCidades dados={dados} /> */}
+        <TableCidades dados={dados} />
       </div>
     </DefaultLayout>
   );
